@@ -28,7 +28,7 @@ jobs:
 
   save_results:
     runs-on: ubuntu-latest
-    needs: [build_rust, pull_reddit_data]
+    needs: [pull_reddit_data]
     steps:
       - uses: actions/checkout@v2
       - name: install duckdb
