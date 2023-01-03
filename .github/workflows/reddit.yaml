@@ -1,9 +1,9 @@
 on:
   schedule:
     - cron: "0 */6 * * *"
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   pull_reddit_data:
@@ -21,7 +21,7 @@ jobs:
         run: "pip install bdfr"
       - name: Download 200 ${{ matrix.list }} posts from ${{ matrix.subreddit }}
         run: |
-          timeout 1m bdfr archive ./archive/${{ matrix.list }} --subreddit ${{ matrix.subreddit }} --sort ${{ matrix.list }} --file-scheme "{POSTID}" -L 200 || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+          timeout 30m bdfr archive ./archive/${{ matrix.list }} --subreddit ${{ matrix.subreddit }} --sort ${{ matrix.list }} --file-scheme "{POSTID}" -L 200 || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
       - name: Upload posts
         uses: actions/upload-artifact@v3
         with:
