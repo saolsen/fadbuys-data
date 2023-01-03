@@ -59,7 +59,7 @@ jobs:
       - name: Commit data
         uses: EndBug/add-and-commit@v5
         with:
-          add: '["data", "./fadbuys-data.db"]'
+          add: "."
           author_name: "fadbuys"
           message: "Sync ${{github.run_number}}"
         env:
