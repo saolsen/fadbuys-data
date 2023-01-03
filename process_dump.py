@@ -7,12 +7,16 @@ from collections import deque
 
 db = duckdb.connect("fadbuys-data.db")
 
+processed = set()
+
 sorts = ["new", "hot", "top"]
 for sort in sorts:
     for path in glob.glob(f"archive/{sort}/*/*.json"):
         with open(path) as f:
             _, sort, subreddit, filename = path.split("/")
-            print(f"Processing {sort}/{subreddit}/{filename}")
+            if (sort, subreddit) not in processed:
+                print(f"Processing {sort}/{subreddit}")
+                processed.add((sort, subreddit))
             data = ujson.load(f)
             created = datetime.fromtimestamp(data["created_utc"])
 
@@ -87,3 +91,4 @@ for sort in sorts:
                 )
 
                 comment_q.extend(comment["replies"])
+db.close()
