@@ -71,3 +71,15 @@ jobs:
 
       - name: complete
         run: curl https://nosnch.in/823740e37e
+
+      - name: log success
+        if: success()
+        env:
+          LOGSNAG_API_KEY: ${{secrets.LOGSNAG_API_KEY}}
+        run: python log_success.py
+
+      - name: log failure
+        if: failure()
+        env:
+          LOGSNAG_API_KEY: ${{secrets.LOGSNAG_API_KEY}}
+        run: python log_failure.py
