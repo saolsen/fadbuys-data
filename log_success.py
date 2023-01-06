@@ -8,6 +8,7 @@ api_key = os.environ["LOGSNAG_API_KEY"]
 logsnag = LogSnag(token=api_key, project="steveindusteves")
 
 logsnag.publish(
+    channel="fadbuys-data",
     event="Sync Success",
     description="Successfully synced data from Reddit.",
     icon="👍",
