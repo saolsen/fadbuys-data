@@ -11,7 +11,7 @@ logsnag.publish(
     channel="fadbuys-data",
     event="Sync Success",
     description="Successfully synced data from Reddit.",
-    icon="👍",
+    icon="✅",
     notify=False,
 )
 

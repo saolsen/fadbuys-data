@@ -10,6 +10,6 @@ logsnag.publish(
     channel="fadbuys-data",
     event="Sync Failure",
     description="Error syncing data from Reddit.",
-    icon="👎",
+    icon="❌",
     notify=True,
 )
