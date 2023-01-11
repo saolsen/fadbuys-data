@@ -41,6 +41,9 @@ jobs:
           unzip -o duckdb_cli-linux-amd64.zip
           chmod 774 ./duckdb
 
+      - name: rebuild db
+        run: echo "IMPORT DATABASE 'data';" | ./duckdb fadbuys-data.db
+
       - name: download the results
         uses: actions/download-artifact@v3
         with:
